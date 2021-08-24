@@ -1,0 +1,10 @@
+<config>
+  <!-- PATHS -->
+  <!-- NOTE: end always with '/' or '\' on folders!! -->
+  <outputpath></outputpath>
+  <inputpath></inputpath>
+  <ffmpegpath></ffmpegpath>
+  <!-- NOTE: 1 = enabled, 0 = disabled -->
+  <!-- ATTENTION: Setting this parameter to 1 will DELETE your base files after converting! No way to recover deleted files! -->
+  <deleteafterconvert>0</deleteafterconvert>
+</config>
