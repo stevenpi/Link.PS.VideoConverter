@@ -2,7 +2,7 @@
 The purpose of the video converter is to save space from many different large captures (i.e. from game capturing). 
 
 ## Requirements
-* A usable ffmpeg.exe is needed (needs to be configured in `config.xml`). Either compile your own binaries from the [official sites](https://www.ffmpeg.org/), or download [Shotcut](https://shotcut.org/) (easier way, download portable version), which contains ffmpeg.exe!
+* A usable `ffmpeg.exe` is needed (needs to be configured in `config.xml`). Either compile your own binaries from the [official sites](https://www.ffmpeg.org/), or download [Shotcut](https://shotcut.org/) (easier way, download portable version), which contains ffmpeg.exe!
 
 ## Setup & Usage
 1. Copy `config.xmlexample` and paste it as `config.xml`
