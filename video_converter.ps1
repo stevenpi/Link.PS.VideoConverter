@@ -19,13 +19,28 @@ Write-Host "$($video_files.count) video file/s found! starting converting...";
 # START CONVERTING
 for ($i = 0; $i -lt $video_files.count; $i++)
 {
+    $video_file = $video_files[$i]
+
     # create/update progress bar
     $completage = $i / $video_files.count * 100;
-    Write-Progress -Activity "Converting videos..." -Status "$completage% Complete" -PercentComplete $completage
+    Write-Progress -Activity "Converting videos... ($($i + 1) of $($video_files.count))" -Status "$completage% Complete" -PercentComplete $completage;
+
+    # cut illegal Windows filename chars
+    $name = $video_file.Name;
+    $filtered_name = "";
+    for ($index = 0; $index -lt $name.Length; $index++)
+    {
+        $character = $name[$index];
+        $regex = "\w|\.|-|_|\s";
+        if ($character -match $regex)
+        {
+            $filtered_name += $character;
+        }
+    }
+    Rename-Item -Path $video_file.FullName -NewName $filtered_name;
 
     # prepare ffmpeg args
-    $video_file = $video_files[$i]
-    Write-Host "converting: " $video_file;
+    Write-Host "converting: " $video_file.Name;
     $video_input_path = $video_file.FullName;
     $video_output_path = $configXmlContent.config.outputpath + $video_file.Name;
     # can't use beautiful concatenation here, because ffmpeg needs paths to be double quoted
