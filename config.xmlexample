@@ -4,6 +4,9 @@
   <outputpath></outputpath>
   <inputpath></inputpath>
   <ffmpegpath></ffmpegpath>
+  <!-- increasing fps will increase calculation time + storage space! -->
+  <!-- But we all like quality... 60 is a good middle ground -->
+  <fpscount>60</fpscount>
   <!-- NOTE: 1 = enabled, 0 = disabled -->
   <!-- ATTENTION: Setting this parameter to 1 will DELETE your base files after converting! No way to recover deleted files! -->
   <deleteafterconvert>0</deleteafterconvert>

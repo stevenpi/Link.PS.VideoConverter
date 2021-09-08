@@ -9,6 +9,7 @@ Write-Host "Video converter starting up...";
 $xmlFile = './config.xml';
 [XML] $configXmlContent = Get-Content $xmlFile;
 $ffmpeg = $configXmlContent.config.ffmpegpath;
+$fps_count = $configXmlContent.config.fpscount;
 
 Write-Host "Config successfully read! Getting video files...";
 Write-Host "Converted videos will be stored in $($configXmlContent.config.outputpath)"
@@ -44,7 +45,8 @@ for ($i = 0; $i -lt $video_files.count; $i++)
     $video_input_path = $video_file.FullName;
     $video_output_path = $configXmlContent.config.outputpath + $video_file.Name;
     # can't use beautiful concatenation here, because ffmpeg needs paths to be double quoted
-    $ffmpeg_args = '-y -i "' + $video_input_path + '" -c:v libx265 -vtag hvc1 "' + $video_output_path + '"';
+    $ffmpeg_args = '-y -i "' + $video_input_path + '" -filter:v fps=' + $fps_count + ' -c:v libx265 -vtag hvc1 "' + $video_output_path + '"';
+    Write-Host "COMMAND: " + $ffmpeg + $ffmpeg_args
     # actually convert file
     Start-Process $ffmpeg -ArgumentList $ffmpeg_args -Wait -RedirectStandardOutput "process_output.txt" -RedirectStandardError "process_error.txt";
     # Delete video if enabled
